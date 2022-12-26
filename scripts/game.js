@@ -1050,7 +1050,8 @@ function riddle() {
 
     function riddleStart() {
         let riddleAnswerOne = document.getElementById("player-answer").value;
-
+        (riddleAnswerOne === null ? riddleAnswerOne = "end" : riddleAnswerOne);
+        (isNaN(riddleAnswerOne) ? riddleAnswerOne = riddleAnswerOne.toLowerCase() : riddleAnswerOne);
         if (parseInt(riddleAnswerOne) === randomNumber) {
             firstRiddleGuess = true;
             showText =["You answer " + riddleAnswerOne + ".", riddleAnswerCorrect];
@@ -1084,6 +1085,8 @@ function riddle() {
 
     function riddleAnswerOneWrongAnswer() {
         let riddleAnswerTwo = document.getElementById("player-answer").value;
+        (riddleAnswerTwo === null ? riddleAnswerTwo = "end" : riddleAnswerTwo);
+        (isNaN(riddleAnswerTwo) ? riddleAnswerTwo = riddleAnswerTwo.toLowerCase() : riddleAnswerTwo);
         if (parseInt(riddleAnswerTwo) === randomNumber) {
             showText = ["You answer " + riddleAnswerTwo + ".", riddleAnswerCorrect];
             show();
@@ -1113,7 +1116,7 @@ function riddle() {
     function riddleAnswerTwoWrongAnswer() {
         let riddleAnswerThree = document.getElementById("player-answer").value;
         (riddleAnswerThree === null ? riddleAnswerThree = "end" : riddleAnswerThree);
-
+        (isNaN(riddleAnswerThree) ? riddleAnswerThree = riddleAnswerThree.toLowerCase() : riddleAnswerThree);
         if (riddleAnswerThree === "special" || riddleAnswerThree === "end" || isNaN(riddleAnswerThree)) {
             function riddleAnswerThreeFallback() {
                 fallbackFunction[0] = riddleAnswerTwoWrong;
@@ -1135,7 +1138,6 @@ function riddle() {
 
 function afterHallway() {
     let minotaur = ["answer"];
-
     startFunction = [minotaurPrompt, "What do you do? 'Fight', 'Flee', 'search' or 'talk'"];
     chapterTitle ="Bullseye"
     chapter();
@@ -1149,6 +1151,7 @@ function afterHallway() {
 
     function minotaurEscape() {
         minotaur[0] = document.getElementById("player-answer").value;
+        (minotaur[0] !== null ? minotaur[0] = minotaur[0].toLowerCase() : minotaur[0] = null);
         if (minotaur[0] === "fight") {
             if (character.strength > 2) {
                 treasureBonus += (character.strength - 3);
@@ -1173,7 +1176,7 @@ function afterHallway() {
         else if (minotaur[0] === "talk") {
             if (character.charisma > 2) {
                 treasureBonus += (character.charisma - 3);
-                showText = ["You tell the minotaur you're it's friend and try to calm it like you would a wild animal. While you don't seem to get the minotaur to go away you are able to slow it down and slowly make it up a staircase.", gameWin];
+                showText = ["You tell the minotaur you're it's friend and try to calm it like you would a wild animal.", "While you don't seem to get the minotaur to go away you are able to calm it down or confuse it so you slowly can make it up a staircase.", gameWin];
                 show();
             } else {
                 showText = ["Your attempts are only met with grunts and and roars and you are run over and trampled by the large minotaur.", minotaurDeath];
