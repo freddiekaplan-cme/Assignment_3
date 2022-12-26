@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../styles/styles.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/favicon/site.webmanifest">
+	<script defer src="/scripts/game.js"></script>
+	<script defer src="/scripts/help.js"></script>
+	<script defer src="/scripts/visuals.js"></script>
+	<script src="https://kit.fontawesome.com/6e6ab83cb6.js" crossorigin="anonymous"></script>
+	<title>Labyrinth Game</title>
+</head>
 
+<body>
+<header id="header">
+	<nav class="menu">
+		<button id="help-button" class="nav-button">Help</button>
+		<select id="nav-speed" class="nav-button">
+			<option value="normal">Fast Text</option>
+			<option value="faster">Faster Text</option>
+			<option value="fastest">Fastest Text</option>
+		  </select>
+		<button id="nav-reset" class="nav-button hidden">Reset</button>
+		<h1 id="nav-title" class="hidden">Labyrinth Game</h1>
+	</nav>
+	<h1 id="title">Labyrinth Game</h1>
+</header>
+<main>
+	<section class="hidden" id="game-text"></section>
+	<section class="hidden" id="messages"></section>
+	<section class="hidden" id="answers">
+		<input class="hidden" id="player-answer" type="text" name="answer" placeholder="Your answer" value="answer">
+		<input type="submit" class="button hidden" id="answer-button" value="Answer">
+	</section>
+	<div id="instruction" class="instruction">
+		<p>Start playing ny pressing the Start Button. Use single word answers and check your spelling.</p>
+		<p>You start out with only one special move, use it by writing "special". It can lead to unexpected effects.</p>
+		<p>End the game by writing "end".</p>
+	</div>
+	<div><button id="copy-button" class="copy-button hidden">COPY YOUR STATS</button></div>
+	<button id="start-button" class="start-button">START</button>
+	<!--
+	<div id="continue-game" class="continue">CONTINUE</div>
+	-->
+
+	<div id="copy">
+		<textarea id="copy-achievements"></textarea>
+	</div>
+
+</main>
+<footer>
+	<p class="copyright">&copy; Freddie Kaplan 2022</p>
+	<div id="music-player"></div>
+	<div id="help-bar">
+		<div id="help-headlines" class="column">
+			<h2 class="help-bar-headline" id="help-play">How to play</h2>
+			<h2 class="help-bar-headline"id="help-answers">Writing answers</h2>
+			<h2 class="help-bar-headline"id="help-examples">Example answers</h2>
+			<!--
+			<h2 class="help-bar-headline"id="help-create">Create Character</h2>
+			<h2 class="help-bar-headline"id="help-random">Random Character</h2>
+			<h2 class="help-bar-headline"id="help-music">Music</h2>
+			-->
+			<h2 class="close" id="help-close">Close Help</h2>
+		</div>
+		<div  class="column"></div>
+		<div id="show-text" class="column">
+	</div>
+</footer>
+</body>
+
+</html>
