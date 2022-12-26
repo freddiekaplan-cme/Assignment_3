@@ -945,7 +945,7 @@ function hallwayStartAnswer() {
 }
 
 function hallwayTrap() {
-    triggeredTrap = true;
+    events.triggeredTrap = true;
     startFunction = [hallwayTrapAnswer, "'Jump' Jump out of the way.\n'Grab' Grab the spears before they hit you."];
     showText = ["While heading back through the dark tunnel you suddenly feel the walls rumble. You've triggered a trap! Spears plummet from the stone ceiling above your head. Can you avoid them in time?", defaultStart];
     show();
