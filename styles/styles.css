@@ -183,6 +183,7 @@ input[type=submit] {
 }
 
 #copy-button.hidden,
+#continue-game.hidden,
 #nav-reset.hidden,
 #nav-title.hidden,
 #title.hidden,
@@ -257,6 +258,7 @@ a:hover {
 
 #continue-game {
 	font-size: 1.3rem;
+	transition: all 0.5s;
 }
 
 .continue:hover,

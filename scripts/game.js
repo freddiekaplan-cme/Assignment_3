@@ -11,18 +11,6 @@ let character = {
     selectQuote: ""
 };
 
-let wizard = [1, 2, 4, 3, "The Wizard", "Fireball", "You conjure a mighty FIREBALL!", 1, "'You chose wisely!'", "'I am cunning and full of tricks, sure to outwit the lurking fiends inside this malevolent maze and unravel any enigmas that might appear.'"];
-let barbarian = [4, 3, 1, 2, "The Barbarian", "Berserk Attack", "You go into a fit of BERSERKER RAGE!", 1, "'Hrm, let's go.'", "'I'm strongk!'"];
-let rogue = [2, 4, 2, 2, "The Rogue", "Storm of Daggers", "Moving at lightning speed, you hit everything around you with a STORM OF DAGGERS!", 1, "'What are we waiting for?'", "'What do you need? I'm versatile and good at many things, and I'm fast as the wind.'"];
-let bard = [2, 1, 3, 4, "The Bard", "Death Note", "Strumming your harp, you find the power within to sing the highpitched and destructive DEATH NOTE!", 1, "'And so the journey begins fa-la-la-la!'", "'Let me tell you the tale about the brave, cunning and beloved bard!'"];
-let hero = [7, 7, 7, 7, "The Amazing Hero", "Super Star Unbeatable Mega Attack Move", "Without brekaing a sweat you use your signature SUPER STAR UNBEATABLE MEGA ATTACK MOVE!", 7, "*Special Character Unlocked!*", "*Special Character Unlocked!*"];
-
-let createCharNameFirst = ["A One-eyed", "A Mysterious", "A Weary", "A Tough-looking", "A Thin", "A Fat", "A Tall", "A Demented", "A Handsome", "A Scruffy Looking", " A Scrawny", "A Disgraced", "A Short", "A Lonely", "A Sneaky", "A Noble", "A Cunning", "A Kind-hearted", "A Well To Do", "A Generous", "A Resolute", "An Adventurous", "A Diabolical", "A Fiendish", "A Raging", "A Reserved", "A Sassy", "A Nervous", "An Old", "A Young", "A Cool and Collected", "A Ferocious", "A Vigilant", "An Ambitious", "A Concerned", "A Hilarious", "A Horned", "A Scarred", "A One-Armed", "A Tough", "A Rebellious", "An Up To No Good", "An Unkown", "A Smalltown"];
-let createCharNameSecond = ["Cat", "Duke", "Single Mother", "Goblin", "Noble", "Playwright", "Bartender", "Warrior", "Web Developer", "Usurper to the Throne", "Heretic", "Farmhand", "Man", "Woman", "Knight", "Squire", "Paladin", "Elf", "Orc", "Soldier", "Monk", "Merchant", "Animal Wrangler", "Forestdweller", "Goatherder", "Smith", "Druid", "Shaman", "Half-Human", "Villager", "Statesman", "Court Jester", "Bandit", "Youngling", "Seafarer", "Pirate", "Swashbuckler", "Sell-sword", "Tough guy", "Princess", "Maiden", "Adventurer", "Ranger", "Guardsman", "Dancer"]
-let randomSpecialText = ["You unleash your ", "You let loose your ", "You use your ", "You summon your ", "You bring forth your ", "You reveal your "];
-let randomSpecialAdjective = ["awesome", "deadly", "fearsome", "epic", "astounding", "incredible", "massive", "powerful", "great", "thundering", "impressive", "forbidden", "mystic", "mysterious", "spectacular", "amazing"];
-let randomSpecial = ["Flurry of Arrows", "Beast Within", "Sword Slash", "Martial Arts", "High Pitched Scream", "Wrestling Move", "Spinning Kick", "Dance of Venomous Veils", "Spear Hand impaler", "Ground Punch", "Really Hard Punch", "Steel Fist Attack", "Warhammer Smash", "Death Stare", "Headbutt", "Body Slam", "Jumping Kick", "Aura Explosion", "Biting", "Demon Conjuring", "Animal Companion", "Hidden Weapon", "Sneak Attack", "Throwing Stars", "Torch Fighting", "Fire Breathing", "Mind Shattering Riddle", "Explosive Potion Bottles", "Shield Push"];
-
 let events = {
     newPathMade: false,
     chestOpened: false,
@@ -35,10 +23,19 @@ let events = {
     killWarlock: false,
     killMinotaur: false,
     typingError: false,
-    usedContinue: false,
     firstRiddleGuess: false
 };
 
+let wizard = [1, 2, 4, 3, "The Wizard", "Fireball", "You conjure a mighty FIREBALL!", 1, "'You chose wisely!'", "'I am cunning and full of tricks, sure to outwit the lurking fiends inside this malevolent maze and unravel any enigmas that might appear.'"];
+let barbarian = [4, 3, 1, 2, "The Barbarian", "Berserk Attack", "You go into a fit of BERSERKER RAGE!", 1, "'Hrm, let's go.'", "'I'm strongk!'"];
+let rogue = [2, 4, 2, 2, "The Rogue", "Storm of Daggers", "Moving at lightning speed, you hit everything around you with a STORM OF DAGGERS!", 1, "'What are we waiting for?'", "'What do you need? I'm versatile and good at many things, and I'm fast as the wind.'"];
+let bard = [2, 1, 3, 4, "The Bard", "Death Note", "Strumming your harp, you find the power within to sing the highpitched and destructive DEATH NOTE!", 1, "'And so the journey begins fa-la-la-la!'", "'Let me tell you the tale about the brave, cunning and beloved bard!'"];
+let hero = [7, 7, 7, 7, "The Amazing Hero", "Super Star Unbeatable Mega Attack Move", "Without brekaing a sweat you use your signature SUPER STAR UNBEATABLE MEGA ATTACK MOVE!", 7, "*Special Character Unlocked!*", "*Special Character Unlocked!*"];
+let createCharNameFirst = ["A One-eyed", "A Mysterious", "A Weary", "A Tough-looking", "A Thin", "A Fat", "A Tall", "A Demented", "A Handsome", "A Scruffy Looking", " A Scrawny", "A Disgraced", "A Short", "A Lonely", "A Sneaky", "A Noble", "A Cunning", "A Kind-hearted", "A Well To Do", "A Generous", "A Resolute", "An Adventurous", "A Diabolical", "A Fiendish", "A Raging", "A Reserved", "A Sassy", "A Nervous", "An Old", "A Young", "A Cool and Collected", "A Ferocious", "A Vigilant", "An Ambitious", "A Concerned", "A Hilarious", "A Horned", "A Scarred", "A One-Armed", "A Tough", "A Rebellious", "An Up To No Good", "An Unkown", "A Smalltown"];
+let createCharNameSecond = ["Cat", "Duke", "Single Mother", "Goblin", "Noble", "Playwright", "Bartender", "Warrior", "Web Developer", "Usurper to the Throne", "Heretic", "Farmhand", "Man", "Woman", "Knight", "Squire", "Paladin", "Elf", "Orc", "Soldier", "Monk", "Merchant", "Animal Wrangler", "Forestdweller", "Goatherder", "Smith", "Druid", "Shaman", "Half-Human", "Villager", "Statesman", "Court Jester", "Bandit", "Youngling", "Seafarer", "Pirate", "Swashbuckler", "Sell-sword", "Tough guy", "Princess", "Maiden", "Adventurer", "Ranger", "Guardsman", "Dancer"]
+let randomSpecialText = ["You unleash your ", "You let loose your ", "You use your ", "You summon your ", "You bring forth your ", "You reveal your "];
+let randomSpecialAdjective = ["awesome", "deadly", "fearsome", "epic", "astounding", "incredible", "massive", "powerful", "great", "thundering", "impressive", "forbidden", "mystic", "mysterious", "spectacular", "amazing"];
+let randomSpecial = ["Flurry of Arrows", "Beast Within", "Sword Slash", "Martial Arts", "High Pitched Scream", "Wrestling Move", "Spinning Kick", "Dance of Venomous Veils", "Spear Hand impaler", "Ground Punch", "Really Hard Punch", "Steel Fist Attack", "Warhammer Smash", "Death Stare", "Headbutt", "Body Slam", "Jumping Kick", "Aura Explosion", "Biting", "Demon Conjuring", "Animal Companion", "Hidden Weapon", "Sneak Attack", "Throwing Stars", "Torch Fighting", "Fire Breathing", "Mind Shattering Riddle", "Explosive Potion Bottles", "Shield Push"];
 let chapterTitle = "";
 let chapters = [0];
 let createAttr = [1, 1, 1, 1, 10];
@@ -48,6 +45,7 @@ let showText = [""];
 let showTextCount = [0];
 let textSpeed = 60;
 let treasureBonus = 0;
+let continueCount = 0;
 
 const LINE = "--------------------"
 const NO_MOVES_LEFT = "You have used up all your special moves.";
@@ -66,32 +64,47 @@ const treasureChestEffects = [
 ];
 
 document.getElementById("start-button").onclick = function() {
+    document.getElementById("messages").innerHTML = "";
+    document.getElementById("messages").classList.add("hidden");
+    document.getElementById("continue-game").classList.add("hidden");
+    document.getElementById("answer-button").onclick = function() {
+        chooseChar();
+    }
     if (document.getElementById("start-button").classList.contains("reset")) {
         document.getElementById("game-text").innerHTML = "";
-        document.getElementById("messages").innerHTML = "";
-        document.getElementById("messages").classList.add("hidden");
         return gameStart();
     } else {
         document.getElementById("start-button").classList.add("reset");
         document.getElementById("start-button").innerText = "RESET";
-        document.getElementById("messages").innerHTML = "";
-        document.getElementById("messages").classList.add("hidden");
         return gameStart();
     }
 }
-/*
+
 document.getElementById("continue-game").onclick = function() {
     if (typeof fallbackFunction[0] === "function") {
-        fallbackFunction[0]();
         events.usedContinue = true;
+        continueCount += 1;
         document.getElementById("player-answer").classList.remove("hidden");
         document.getElementById("answer-button").classList.remove("hidden");
+        document.getElementById("messages").innerHTML = "";
+        document.getElementById("messages").classList.remove("hidden");
         document.getElementById("answer-button").classList.remove("no-use");
+        return fallbackFunction[0]();
+    }
+    else if (typeof continuePoint[0] === "function") {
+        events.usedContinue = true;
+        continueCount += 1;
+        document.getElementById("player-answer").classList.remove("hidden");
+        document.getElementById("answer-button").classList.remove("hidden");
+        document.getElementById("messages").innerHTML = "";
+        document.getElementById("messages").classList.remove("hidden");
+        document.getElementById("answer-button").classList.remove("no-use");
+        return continuePoint[0]();
     } else {
         gameStart();
     }
 }
-*/
+
 
 function onSpeedChange(event) {
     const selectedValue = event.target.value;
@@ -216,6 +229,7 @@ function createSpecialMoveLine() {
 function end() {
     document.getElementById("player-answer").classList.add("hidden");
     document.getElementById("answer-button").classList.add("hidden");
+    document.getElementById("continue-game").classList.remove("hidden");
     document.getElementById("messages").innerHTML = "You ended the game. Press Continue to go on, or Reset for a new game.";
     showText[0] = "GAME OVER";
     show();
@@ -234,6 +248,7 @@ function gameOver() {
     document.getElementById("player-answer").classList.add("hidden");
     document.getElementById("answer-button").classList.add("hidden");
     document.getElementById("messages").classList.add("hidden");
+    document.getElementById("continue-game").classList.remove("hidden");
     document.getElementById("messages").innerHTML = "";
 }
 
@@ -253,7 +268,12 @@ function show() {
             document.getElementById("game-text").scrollTop += 100;
     } else {
         if (typeof showText[0] === 'function') {
+            document.getElementById("answer-button").classList.remove("no-use");
             return showText[0]();
+        }
+        else if (showTextCount[0] === 0 && showText.length === 1) {
+            document.getElementById("answer-button").classList.remove("no-use");
+            showText[0] = "";
         } else {
             showTextCount[0] = 0;
             document.getElementById("game-text").innerHTML += "<br><br>";
@@ -262,20 +282,19 @@ function show() {
             if (showText.length === 1) {
                 showText[0] = "";
             } else {
+                document.getElementById("answer-button").classList.remove("no-use");
                 showText.shift();
                 show();
             }
         }
     }
 }
-
-function chapter() {
+let continuePoint = [gameStart];
+function chapter(setContinue) {
+    continuePoint[0] = setContinue;
+    fallbackFunction[0] = setContinue;
     chapters[0] += 1;
     showText = ["CHAPTER " + chapters[0] + ":", chapterTitle, LINE]
-    /*showText[0] = "CHAPTER " + chapters[0] + ":";
-    showText[1] = chapterTitle;
-    showText[2] = LINE;
-    */  
     show();
 }
 
@@ -313,6 +332,7 @@ function gameStart() {
     chapterTitle = "";
     chapters = [0];
     character.specialMoveCount = 1;
+    continueCount = 0;
     startFunction = [openMessageAndAnswer];
     document.getElementById("player-answer").value = "";
     document.getElementById("title").classList.add("hidden");
@@ -340,11 +360,10 @@ function gameStart() {
 
     document.getElementById("game-text").classList.remove("hidden");
     document.getElementById("start-button").classList.add("no-use");
-    //document.getElementById("start-button").text = "RESET";
-    document.getElementById("nav-reset").classList.remove("hidden");
+    //document.getElementById("nav-reset").classList.remove("hidden");
     document.getElementById("nav-title").classList.remove("hidden");
     chapterTitle = "The Labyrinth";
-    chapter();
+    chapter(gameStart);
     showText.push(
         "You stand before the entrance of a mysterious labyrinth, filled with danger - but also hidden treasures...", 
         "CHOOSE YOUR ADVENTURER:", 
@@ -514,14 +533,14 @@ function charChosen() {
 
 function charChosenAnswer() {
     showText = [
-        character.name,
         LINE,
+        character.name,
         "* Strength: " + character.strength,
         "* Dexterity: " + character.dexterity,
         "* Intelligence: " + character.intelligence,
         "* Charisma: " + character.charisma,
         "* Special move: " + character.specialMove,
-        character.chosenQuote,
+        "* Special moves left: " + character.specialMoveCount,
         LINE
     ];
     show(); 
@@ -565,12 +584,12 @@ function defaultElse() {
         }
     } else if (fallbackFunction[1] === "end" || fallbackFunction[1] === null) {
         end();
-
+    }
+    else if (fallbackFunction[1] === "stats") {
+        charChosenAnswer();
     } else {
         events.typingError = true;
         fallbackFunction[0]();
-        /*document.getElementById("messages").innerHTML = CHECK_SPELLING;*/
-
         document.getElementById("messages").innerHTML += "<p>" + CHECK_SPELLING + "</p>"
         document.getElementById("player-answer").value = "";
         return setTimeout(removeLastChild, 5000);
@@ -590,10 +609,10 @@ function enterAnswer() {
     (charEnter !== null ? charEnter = charEnter.toLowerCase() : charEnter = null);
     if (charEnter === "yes") {
         document.getElementById("player-answer").value = "";
-        startFunction[0] = choosePath;
+        startFunction[0] = choosePathAnswer;
         startFunction[1] = "Choose your path: 'Left' or 'right'";
         chapterTitle = "No Way Back";
-        chapter();
+        chapter(choosePath);
         showText[3] = "With a torch in your hand, you enter the cavernous opening into the labyrinth. Who knows what horrors might dwell inside the dark...";
         showText[4] = "As you go on in through a narrow tunnel you suddenly hear a loud noise behind you. An ornate iron gate is blocking the opening - you're trapped! You can only continue forward into the labyrinth."
         showText[5] = "The path splits into two. Which way do you take, left or right?";
@@ -618,6 +637,7 @@ function choosePath() {
 }
 
 function choosePathAnswer() {
+    document.getElementById("messages").innerText = "Choose your path: 'Left' or 'right'";
     let path = document.getElementById("player-answer").value;
     (path !== null ? path = path.toLowerCase() : path = null);
     if (path === "left") {
@@ -636,7 +656,7 @@ function choosePathAnswer() {
 
 function leftPath() {
     chapterTitle = "A Brush with Death";
-    chapter();
+    chapter(leftPath);
     startFunction = [leftPathAnswer, "Choose: 'Fight', 'Flee' or 'Talk'."]
     showText.push("You walk down a curved and narrow path. The low ceiling almost hits your head.", "As you make a sharp turn you hear something rustling in the dark.", "Suddenly - a hostile goblin appears! It's holding a crooked knife and seems eager to use it.", "Do you want to fight, flee or talk?", defaultStart);
     show();
@@ -697,7 +717,7 @@ function goblinFightOutcome() {
 
 function rightPath() {
     chapterTitle = "An Unexpected Windfall";
-    chapter();
+    chapter(rightPath);
     startFunction = [rightPathAnswer, "What do you do? 'Go', 'search' or 'leave'?"];
     showText.push("You enter a dusty old room. You have trouble seeing what's inside this dark and cursed chamber. What do you do?", "Go on into the darkness, stop and search around or leave?", defaultStart);
     show();
@@ -920,7 +940,7 @@ function rightPathAnswerOpenChest() {
 function hallwayStart() {
     startFunction = [hallwayStartAnswer, "Do you continue forward? 'Yes' to go on, 'no' to go back."];
     chapterTitle = "The Hallway"
-    chapter();
+    chapter(hallwayStart);
     showText.push("You delve deeper into the winding tunnels and come across a long hallway. Do you continue forward?", defaultStart);
     show();
 }
@@ -1044,7 +1064,7 @@ function riddle() {
 
     startFunction = [riddleStart, "What's your first guess? (Use a number.)"];
     chapterTitle = "The Warlock's Riddle"
-    chapter();
+    chapter(riddle);
     showText.push("You reach the end of the hallway and before you looms a huge humanoid stone golem. It looks like a crude statue but you notice the blocky head slowly moving to watch your every move.", "Next to it you find an old man covered in dark robes and chains adorned with runes. He's holding a staff filled with cryptic inscriptions. This must be a devious warlock!", "He speaks with a rough and raspy voice: 'One wants two pass and look four treasure, yes? Hee hee! You have to answer my riddle in guesses three! What number am I thinking of?'", "After careful consideration, you come to a couple of conclusions:", "The number should be higher than " + lowNumber + " and lower than " + highNumber + ".", defaultStart);
     show();
 
@@ -1140,7 +1160,7 @@ function afterHallway() {
     let minotaur = ["answer"];
     startFunction = [minotaurPrompt, "What do you do? 'Fight', 'Flee', 'search' or 'talk'"];
     chapterTitle ="Bullseye"
-    chapter();
+    chapter(afterHallway);
     showText.push("You enter a huge, cavernous chamber. Something is glimmering in a corner - gold!", "You've found the treasure! But your joy is shortlived. As you start to fill up your bags with coins and golden trinkets, you notice the sound of hoofs approaching.", "The fearsome minotaur, terror of the labyrinth, has found you!", "What do you do?", defaultStart);
     show();
 
@@ -1305,6 +1325,12 @@ function gameWin() {
             copyTextArea.innerHTML += "&#13;&#10;"; 
         }
 
+        if (chapters >= 10) {
+            showText.push("📖 Voracious Reader! You played through a lot chapters.");
+            copyTextArea.textContent += "📖 Voracious Reader, played many chapters.";
+            copyTextArea.innerHTML += "&#13;&#10;"; 
+        }
+
         if (events.chestOpened === true && events.secondChestOpened === true) {
             showText.push("💎 Treasure Hunter! You found more than one chest.");
             copyTextArea.textContent += "💎 Treasure Hunter, more than one chest found.";
@@ -1347,19 +1373,17 @@ function gameWin() {
             copyTextArea.innerHTML += "&#13;&#10;";
         }
 
-        /*
-        if (events.usedContinue === false) {
+        if (continueCount === 0) {
             showText.push("🗿 Old School! You didn't use the Continue function.");
             copyTextArea.textContent += "🗿 Old School, didn't use Continue.";
             copyTextArea.innerHTML += "&#13;&#10;";
         }
 
-        if (events.usedContinue === true) {
-            showText.push("🔁 No retreat, no surrender! You used the Continue function.");
-            copyTextArea.textContent += "🔁 No retreat, no surrender! Used Continue.";
+        if (continueCount > 2) {
+            showText.push("🔁 No retreat, no surrender! You used the Continue function A LOT.");
+            copyTextArea.textContent += "🔁 No retreat, no surrender! Used Continue many times.";
             copyTextArea.innerHTML += "&#13;&#10;";
         }
-        */
         
         copyTextArea.innerHTML += "&#13;&#10;";
         copyTextArea.innerHTML += "&#13;&#10;";
