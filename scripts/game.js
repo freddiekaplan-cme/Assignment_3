@@ -43,7 +43,7 @@ let fallbackFunction = ["function", "prompt", "special console log", "function a
 let riddleClues = 0;
 let showText = [""];
 let showTextCount = [0];
-let textSpeed = 60;
+let textSpeed = [60];
 let treasureBonus = 0;
 let continueCount = 0;
 
@@ -109,13 +109,13 @@ document.getElementById("continue-game").onclick = function() {
 function onSpeedChange(event) {
     const selectedValue = event.target.value;
     if (selectedValue === "normal") {
-        textSpeed = 60;
+        textSpeed[0] = 60;
     }
     if (selectedValue === "faster") {
-        textSpeed = 35;
+        textSpeed[0] = 35;
     }
     if (selectedValue === "fastest") {
-        textSpeed = 15;
+        textSpeed[0] = 15;
     }
   }
 
@@ -148,82 +148,113 @@ function copyResult() {
 }
 
 function createStr() {
+    createAttr[0] = document.getElementById("player-answer").value;
+    startFunction = [createStrAnswer, "Choose value for Strength:"];
+    defaultStart();
+}
 
-    //MORE WORK NEEDED
-    createAttr[0] = prompt("Strength:\n\n");
-    (createAttr[0] !== null ? createAttr[0] = createAttr[0] : createAttr[0] = null);
-    if (createAttr[0] === "end" || createAttr[0] === null) {
+function createStrAnswer() {
+    createAttr[0] = document.getElementById("player-answer").value;
+    if (createAttr[0] === "end") {
+        createAttr[0] = 1;
         end();
     } else if (isNaN(createAttr[0])) {
-        showText = ["Please enter a number.", createStr()];
-        show();
+        createAttr[0] = 1;
+        startFunction[0] = setTimeout(createStr, 1500);
+        startFunction[1] = "Please enter a number.";
+        defaultStart();
     } else {
         if (createAttr[0] >= 1 && createAttr[0] <= createAttr[4] - createAttr[1] - createAttr[2] - createAttr[3]) {
             character.strength = createAttr[0];
-            showText = ["* Strength: " + createAttr[0], createDex];
+            showText = ["* Strength: " + createAttr[0], defaultStart];
+            startFunction[0] = createDexAnswer;
+            startFunction[1] = "Choose value for Dexterity:";
             show();
         } else {
             createAttr[0] = 1;
-            showText = ["Too low or high number, try again. (Should be between " + createAttr[0] + " and " + (createAttr[4] - (createAttr[1] + createAttr[2] + createAttr[3])) + ")", createStr];
-            show();
+            startFunction[0] = setTimeout(createStr, 1500);
+            startFunction[1] = "Too low or high number, try again. (Should be between " + createAttr[0] + " and " + (createAttr[4] - (createAttr[1] + createAttr[2] + createAttr[3])) + ")";
+            defaultStart();
+            //show();
         }
     }
 }
 
 function createDex() {
-    createAttr[1] = prompt("Dexterity:\n\n");
-    if (createAttr[1] === "end" || createAttr[1] === null) {
+    createAttr[1] = document.getElementById("player-answer").value;
+    startFunction = [createDexAnswer, "Choose value for Dexterity:"];
+    defaultStart();
+}
+
+function createDexAnswer() {
+    createAttr[1] = document.getElementById("player-answer").value;
+    if (createAttr[1] === "end") {
+        createAttr[1] = 1;
         end();
     } else if (isNaN(createAttr[1])) {
-        showText = ["Please enter a number.", createDex];
-        show();
+        createAttr[1] = 1;
+        startFunction[0] = setTimeout(createDex, 1500);
+        startFunction[1] = "Please enter a number.";
+        defaultStart();
     } else {
         if (createAttr[1] >= 1 && createAttr[1] <= createAttr[4] - createAttr[0] - createAttr[2] - createAttr[3]) {
             character.dexterity = createAttr[1];
-            showText = ["* Dexterity: " + createAttr[1], createInt];
+            showText = ["* Dexterity: " + createAttr[1], defaultStart];
+            startFunction[0] = createIntAnswer;
+            startFunction[1] = "Choose value for Intelligence:";
             show();
         } else {
-            showText = ["Too low or high number, try again. (Should be between " + createAttr[1] + " and " + (createAttr[4] - createAttr[0] - createAttr[2] - createAttr[3]) + ")", createDex];
-            show();
+            createAttr[1] = 1;
+            startFunction = [setTimeout(createDex, 1500), "Too low or high number, try again. (Should be between " + createAttr[1] + " and " + (createAttr[4] - createAttr[0] - createAttr[2] - createAttr[3]) + ")"];
+            defaultStart();
         }
     }
 }
 
 function createInt() {
-    createAttr[2] = prompt("Intelligence:\n\n");
-    if (createAttr[2] === "end" || createAttr[2] === null) {
+    createAttr[2] = document.getElementById("player-answer").value;
+    startFunction = [createIntAnswer, "Choose value for Intelligence:"];
+    defaultStart();
+}
+
+function createIntAnswer() {
+    createAttr[2] = document.getElementById("player-answer").value;
+    if (createAttr[2] === "end") {
+        createAttr[2] = 1;
         end();
     } else if (isNaN(createAttr[2])) {
-        showText = ["Please enter a number.", createInt];
-        show();
+        createAttr[2] = 1;
+        startFunction[0] = setTimeout(createInt, 1500);
+        startFunction[1] = "Please enter a number.";
+        defaultStart();
     } else {
-        //BEHÖVER LÄGGA IHOP ALLA CONSOLE TILL EN SHOWTEXT
         if (createAttr[2] >= 1 && createAttr[2] <= createAttr[4] - createAttr[0] - createAttr[1] - createAttr[3]) {
             character.intelligence = createAttr[2];
-            showText = ["* Intelligence: " + createAttr[2]];
-            show();
             createAttr[3] = createAttr[4] - createAttr[0] - createAttr[1] - createAttr[2];
             character.charisma = createAttr[3];
-            showText = ["* Charisma: " + createAttr[3]];
+            startFunction[0] = createSpecialMove;
+            startFunction[1] = "Special move:";
+            showText.push("* Intelligence: " + createAttr[2], "* Charisma: " + createAttr[3], "What's the name of your special move?", defaultStart);
             show();
-            showText = ["What's the name of your special move?"];
-            show();
-
-
-            character.specialMove = prompt("Special move:\n\n");
-            (character.specialMove !== null ? character.specialMove = character.specialMove.charAt(0).toUpperCase() + character.specialMove.slice(1) : end());
-            character.specialMoveCount = 1;
-            createSpecialMoveLine();
-            charChosen();
         } else {
-            showText = ["Too low or high number, try again. (Should be between " + createAttr[2] + " and " + (createAttr[4] - createAttr[0] - createAttr[1] - createAttr[3]) + ")", createInt];
-            show();
+            createAttr[2] = 1;
+            startFunction = [setTimeout(createInt, 1500), "Too low or high number, try again. (Should be between " + createAttr[2] + " and " + (createAttr[4] - createAttr[0] - createAttr[1] - createAttr[3]) + ")"];
+            defaultStart();
         }
     }
 }
 
+function createSpecialMove() {
+    character.specialMove = document.getElementById("player-answer").value;
+    (character.specialMove !== null ? character.specialMove = character.specialMove.charAt(0).toUpperCase() + character.specialMove.slice(1) : end());
+    character.specialMoveCount = 1;
+    createSpecialMoveLine();
+    charChosen();
+}
+
 function createSpecialMoveLine() {
-    character.specialMoveLine = randomSpecialText[Math.floor(Math.random() * randomSpecialText.length)] + randomSpecialAdjective[Math.floor(Math.random() * randomSpecialAdjective.length)] + " " + character.specialMove.toUpperCase + "!";
+   // let upperCaseSpecialMove = character.specialMove.toUpperCase();
+    character.specialMoveLine = randomSpecialText[Math.floor(Math.random() * randomSpecialText.length)] + randomSpecialAdjective[Math.floor(Math.random() * randomSpecialAdjective.length)] + " " + character.specialMove.toUpperCase() + "!";
 }
 
 function end() {
@@ -388,9 +419,7 @@ function openMessageAndAnswer() {
     document.getElementById("answer-button").classList.remove("no-use");
     document.getElementById("start-button").classList.remove("no-use");
     document.getElementById("instruction").classList.add("hidden");
-    document.getElementById("messages").innerHTML = "Choose a character from the list:<br>'Wizard', 'Rogue', 'Bard' or 'Barbarian'."
-    /*<br><br>You can also write 'create' to make your own character or 'random' to generate a unique one.";
-    */
+    document.getElementById("messages").innerHTML = "Choose a character from the list:<br>'Wizard', 'Rogue', 'Bard' or 'Barbarian'.<br><br>You can also write 'create' to make your own character or 'random' to generate a unique one.";
 }
 
 document.getElementById("answer-button").onclick = function() {
@@ -424,16 +453,17 @@ function chooseChar() {
     } 
     else if (chooseCharacter === "create") {
         function createYourOwnCharacter() {
+            startFunction[0] = createAttributes;
+            startFunction[1] = "Choose your name:";
             showText[0] = LINE
             showText[1] = "CREATE YOUR OWN CHARACTER";
             showText[2] = "Start with your name.";
             showText[3] = defaultStart;
             show();
-            startFunction[0] = createAttr;
-            startFunction[1] = "Choose your name:";
             
-            function createAttr() {
-                showText[0] = "Name: " + createName;
+            function createAttributes() {
+                character.name = document.getElementById("player-answer").value;
+                showText[0] = "Name: " + character.name;
                 showText[1] = LINE;
                 showText[2] = "You have " + createAttr[4] + " points for your four attributes";
                 showText[3] = "* Strength";
@@ -441,10 +471,10 @@ function chooseChar() {
                 showText[5] = "* Intelligence";
                 showText[6] = "* Charisma";
                 showText[7] = "Each attribute must be at least " + createAttr[0] + ".";
+                showText[8] = defaultStart;
                 show();
-                startFunction[0] = createStr;
+                startFunction[0] = createStrAnswer;
                 startFunction[1] = "Choose value for Strength:";
-                defaultStart();
             };
         };
         return createYourOwnCharacter();
@@ -476,9 +506,9 @@ function assignCharValues(chosenCharacter) {
 }
 
 function randomCharacter() {
+    createAttr = [1, 1, 1, 1, 10];
     character.name = createCharNameFirst[Math.floor(Math.random() * createCharNameFirst.length)] + " " + createCharNameSecond[Math.floor(Math.random() * createCharNameSecond.length)];
     character.random = "yes";
-    const createAttr = [1, 1, 1, 1, 10];
     createAttr[0] = createAttr[0] + (Math.floor(Math.random() * (createAttr[4] - createAttr[1] - createAttr[2] - createAttr[3])));
     createAttr[1] = createAttr[1] + (Math.floor(Math.random() * (createAttr[4] - createAttr[0] - createAttr[2] - createAttr[3])));
     createAttr[2] = createAttr[2] + (Math.floor(Math.random() * (createAttr[4] - createAttr[0] - createAttr[1] - createAttr[3])));
@@ -497,19 +527,29 @@ function randomCharacter() {
     character.specialMoveCount = 1;
     character.specialMove = randomSpecial[Math.floor(Math.random() * randomSpecial.length)];
     createSpecialMoveLine();
-    charChosen();
+    startFunction = [charChosen, "Ready to start, 'yes' or 'no'?<br>'No' will generate a new character."];
+    showText = [
+        LINE,
+        character.name,
+        "* Strength: " + character.strength,
+        "* Dexterity: " + character.dexterity,
+        "* Intelligence: " + character.intelligence,
+        "* Charisma: " + character.charisma,
+        "* Special move: " + character.specialMove,
+        character.chosenQuote,
+        defaultStart,
+        ];
+        show();
+
 }
 
 function charChosen() {
     if (character.random === "yes") {
-
-        randomStartOver = prompt("Ready to start, 'yes' or 'no'?\n\n'No' will generate a new character.\n\n");
-
-
+        randomStartOver = document.getElementById("player-answer").value;
         (randomStartOver !== null ? randomStartOver = randomStartOver.toLowerCase() : randomStartOver = null);
         if (randomStartOver === "no") {
             randomCharacter();
-        } else if (randomStartOver === "end" || randomStartOver === null) {
+        } else if (randomStartOver === "end") {
             end();
         } else {
             enter();
@@ -531,7 +571,7 @@ function charChosen() {
     } 
 }  
 
-function charChosenAnswer() {
+function charChosenStats() {
     showText = [
         LINE,
         character.name,
@@ -586,7 +626,7 @@ function defaultElse() {
         end();
     }
     else if (fallbackFunction[1] === "stats") {
-        charChosenAnswer();
+        charChosenStats();
     } else {
         events.typingError = true;
         fallbackFunction[0]();
@@ -965,9 +1005,11 @@ function hallwayStartAnswer() {
 }
 
 function hallwayTrap() {
+    chapterTitle ="Heads up";
+    chapter();
     events.triggeredTrap = true;
     startFunction = [hallwayTrapAnswer, "'Jump' Jump out of the way.\n'Grab' Grab the spears before they hit you."];
-    showText = ["While heading back through the dark tunnel you suddenly feel the walls rumble. You've triggered a trap! Spears plummet from the stone ceiling above your head. Can you avoid them in time?", defaultStart];
+    showText.push("While heading back through the dark tunnel you suddenly feel the walls rumble. You've triggered a trap! Spears plummet from the stone ceiling above your head. Can you avoid them in time?", defaultStart);
     show();
 }
 
