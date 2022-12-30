@@ -509,7 +509,15 @@ function randomCharacter() {
     createAttr = [1, 1, 1, 1, 10];
     character.name = createCharNameFirst[Math.floor(Math.random() * createCharNameFirst.length)] + " " + createCharNameSecond[Math.floor(Math.random() * createCharNameSecond.length)];
     character.random = "yes";
-    createAttr[0] = createAttr[0] + (Math.floor(Math.random() * (createAttr[4] - createAttr[1] - createAttr[2] - createAttr[3])));
+
+    let highRandom = Math.floor(Math.random() * 4);
+    if (highRandom === 4) {
+        createAttr[0] = createAttr[0] + (Math.floor(Math.random() * (createAttr[4] - createAttr[1] - createAttr[2] - createAttr[3])));
+    } else {
+        createAttr[0] = createAttr[0] + (Math.floor(Math.random() * ((createAttr[4] - 2) - createAttr[1] - createAttr[2] - createAttr[3])));
+    }
+    (createAttr[0] < 1 ? createAttr[0] = 1 : createAttr[0]);
+
     createAttr[1] = createAttr[1] + (Math.floor(Math.random() * (createAttr[4] - createAttr[0] - createAttr[2] - createAttr[3])));
     createAttr[2] = createAttr[2] + (Math.floor(Math.random() * (createAttr[4] - createAttr[0] - createAttr[1] - createAttr[3])));
     createAttr[3] = createAttr[4] - createAttr[0] - createAttr[1] - createAttr[2];
@@ -540,7 +548,6 @@ function randomCharacter() {
         defaultStart,
         ];
         show();
-
 }
 
 function charChosen() {
@@ -549,10 +556,16 @@ function charChosen() {
         (randomStartOver !== null ? randomStartOver = randomStartOver.toLowerCase() : randomStartOver = null);
         if (randomStartOver === "no") {
             randomCharacter();
-        } else if (randomStartOver === "end") {
+        } 
+        else if (randomStartOver === "end") {
             end();
-        } else {
+        } 
+        else if (randomStartOver === "yes") {   
             enter();
+        } else {
+            document.getElementById("messages").innerHTML += "<p>" + CHECK_SPELLING + "</p>"
+            document.getElementById("player-answer").value = "";
+            return setTimeout(removeLastChild, 5000);
         }
     } else {
         showText = [
