@@ -124,6 +124,7 @@ main {
 }
 
 #answer-button {
+	background-color: rgb(189, 186, 186);
 	-webkit-box-align: center;
 	    -ms-flex-align: center;
 	        align-items: center;
