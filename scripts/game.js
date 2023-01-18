@@ -105,7 +105,6 @@ document.getElementById("continue-game").onclick = function() {
     }
 }
 
-
 function onSpeedChange(event) {
     const selectedValue = event.target.value;
     if (selectedValue === "normal") {
@@ -137,6 +136,7 @@ function copyResult() {
     let copyText = document.getElementById("copy-achievements");
     copyText.select();
     copyText.setSelectionRange(0, 99999);
+
     navigator.clipboard.writeText(copyText.value);
 
     function resetCopyButtonText() {
