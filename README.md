@@ -13,6 +13,7 @@ The third assignment for the Frontend course at [Changemaker Educations](https:/
   - Switch Statements
   - Ternary Expressions
   - Variables
+- jQuery
 - CSS Prefixing
 - CSS Variables
 - Flexbox
